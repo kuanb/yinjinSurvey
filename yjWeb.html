@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-     <link rel="icon" href="img/FH_Logo 2014.png">
+     <link rel="icon" href="img/yjFace.png">
 
     <script type="text/javascript">  
       // Getting project list from Fusion Tables   
@@ -167,8 +167,8 @@
     }
     
     function initialize(){
-      loadMap("1KGt7nGOtN9QOchPFfjF_tN4emt4Yc-SEOsMqDEvm", 22.208605, -103.057424, 5);
-      drawVisualization("1KGt7nGOtN9QOchPFfjF_tN4emt4Yc-SEOsMqDEvm");
+      loadMap("1TenEyJyMAemfv9TIBjMAjiTI9mGilw7uwbntavgw", 22.208605, -103.057424, 5);
+      drawVisualization("1TenEyJyMAemfv9TIBjMAjiTI9mGilw7uwbntavgw");
     }
     
     function setActiveProject(activeProject, fusionTableID, centerLat, centerLng, zoomLevel){
@@ -528,13 +528,13 @@
         // Settings     
         function drawVisualization(fusionTableID) {
            
-          var queryText = encodeURIComponent("SELECT count(SurveyID) FROM 1KGt7nGOtN9QOchPFfjF_tN4emt4Yc-SEOsMqDEvm");
+          var queryText = encodeURIComponent("SELECT count(SurveyID) FROM 1TenEyJyMAemfv9TIBjMAjiTI9mGilw7uwbntavgw");
         
           // Chart 1
           google.visualization.drawChart({
             "containerId": "chart1",
             "dataSourceUrl": 'https://www.google.com/fusiontables/gvizdata?tq=',
-            "query":"SELECT  count(Vivienda), count(SurveyID) FROM " + fusionTableID,
+            "query":"SELECT  count(Lat), count(Lng) FROM " + fusionTableID,
             "chartType": "ColumnChart",
             "color": "green", //#99E699,
             "options": {
@@ -542,7 +542,7 @@
               "height" : 240,
               "width" : 300,
               "vAxis": {"title": ""},
-              "hAxis": {"title": "Número de encuestas"},
+              "hAxis": {"title": "Surveys Performed"},
               "isVertical": 'true',
               "showAxisLines": 'false',
               "legend": 'none',
@@ -641,7 +641,7 @@
         </script>
 
     <!-- Base Bootstrap Content -->
-    <title>Fundación Hogares + Flocktracker</title>
+    <title>Yin Jin Lee's Dashboard by Flocktracker</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="css/theme.css" rel="stylesheet">
@@ -662,15 +662,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" style="padding-top:8px;" href="http://www.fundacionhogares.org/"><img src="img/FH_Logo 2014.png" style="width:32px;"/></a>
+          <a class="navbar-brand" style="padding-top:8px;" href="https://www.linkedin.com/pub/yin-jin-lee/52/790/815"><img src="img/yjFace.png" style="width:32px;"/></a>
           <a class="navbar-brand" style="padding-top:8px;" href="http://flocktracker.mit.edu"><img src="img/ft_logoxl.png" style="width:32px;"/></a>
-          <a class="navbar-brand" href="#">FH Flocktracker Dashboard</a>
+          <a class="navbar-brand" href="#">Yin Jin Lee's Dashboard</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#" id="activeProject">Proyecto Activo</a></li>
+            <li class="active"><a href="#" id="activeProject">Active Project</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Selección del sitio<span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Site Selection<span class="caret"></span></a>
               <ul class="dropdown-menu" id="projectSelectorDropdown">
               </ul>
             </li>         
@@ -684,7 +684,7 @@
     <div class="container theme-showcase" role="main">
 
       <div class="page-header">
-        <h1>Estadísticas</h1>
+        <h1>Statistics</h1>
       </div>
       <div class="row">
 
