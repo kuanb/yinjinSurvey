@@ -1,0 +1,1 @@
+google.visualization.Query.setResponse({version:'0.5',reqId:'17',status:'ok',table:{p:{totalrows:6},cols:[{id:'col22',label:'pointsecurity',type:'string'},{id:'#agg#COUNT',label:'count()',type:'number'}],rows:[{c:[{v:'3'},{v:446.0}]},{c:[{v:'4'},{v:318.0}]},{c:[{v:'1'},{v:309.0}]},{c:[{v:'2'},{v:198.0}]},{c:[{v:'5'},{v:187.0}]},{c:[{v:''},{v:67.0}]}]}})

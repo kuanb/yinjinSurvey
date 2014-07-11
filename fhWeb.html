@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+     <link rel="icon" href="img/FH_Logo 2014.png">
+
+    <script type="text/javascript">  
+      // Getting project list from Fusion Tables   
+      function queryProjects(){
+        var fusiontable_project_names = "1lBd3QeR4-qv7FvYf3JMzyHJEgm0kAgMeEETtGINg"; // Table with project names and fusion tables ids
+        var queryString = "SELECT project_name, fusion_table FROM " + fusiontable_project_names;                 
+        var query = new google.visualization.Query(
+              'http://www.google.com/fusiontables/gvizdata?tq=' + 
+              encodeURIComponent(queryString));   
+              query.send(queryProjects2);
+      }
+      function queryProjects2(projectResponse){
+        var table = projectResponse.getDataTable();
+        var rows = table.getNumberOfRows();
+        var list = document.getElementById("projectSelectorDropdown");
+        var fusionTableId = new Array(rows); 
+        var opt = new Array(rows); 
+        var bounds = new Array(rows); 
+        var mapDim = getMapDim();
+        var zoomLevel = new Array(rows);
+        for (var i = 0; i < rows; i++){  
+            fusionTableId[i] = table.getValue(i, 1);        
+            opt[i] = table.getValue(i, 0);
+            var queryLimitsString = "SELECT MAXIMUM ( Lat ), MINIMUM ( Lat ), MAXIMUM ( Lng ), MINIMUM ( Lng ) FROM " + fusionTableId[i];
+            var query = new google.visualization.Query(
+              'http://www.google.com/fusiontables/gvizdata?tq=' + 
+              encodeURIComponent(queryLimitsString));   
+            makeQuery(query, i);
+                           
+        }
+
+        function makeQuery(query, queryIndex){
+          query.send(parseMapInfo);
+          function parseMapInfo(response){
+            var mapLimitstable = response.getDataTable();
+            setTable(mapLimitstable);
+          }
+          function setTable(table){
+            mapLimitstable = table;
+            n = mapLimitstable.getValue(0, 0);
+            s = mapLimitstable.getValue(0, 1);
+            e = mapLimitstable.getValue(0, 2);
+            w = mapLimitstable.getValue(0, 3);
+            bounds[queryIndex] = {
+              "n": n,
+              "s": s,
+              "e": e,
+              "w": w
+            }; 
+            addItemToDropdown(queryIndex); 
+          }
+        }
+        function addItemToDropdown(index){
+            var zoomLevel = getBoundsZoomLevel(bounds[index], mapDim);
+            var centerLat = (bounds[index].n + bounds[index].s)/2;
+            var centerLng = (bounds[index].e + bounds[index].w)/2;
+            var li = document.createElement("li");
+            var link = document.createElement("a");             
+            var text = document.createTextNode(opt[index]);
+            link.appendChild(text);
+            link.setAttribute('onclick', "refreshInfo('" + fusionTableId[index] + "'," + centerLat + "," + centerLng + "," + zoomLevel + ",'" + opt[index] + "')");  
+            li.appendChild(link);
+            list.appendChild(li);
+        }
+
+        function checkIfMapInfoIsReady(){
+          var ready = false;
+          outer_loop:
+          for (var j = 0; j < rows; j++){
+            if (typeof bounds[j] === 'undefined'){
+              alert("undefined " + bounds[j] + j);
+              ready = false;
+              break outer_loop;
+            } else {
+              ready = true;
+            }
+          }
+          if (ready){
+            alert("SEEEEEEE");
+            addItemsToDropdown();
+          }
+        }
+      }
+
+
+      function getMapDim(){
+        var mapWidth = document.getElementById("map-canvas").offsetWidth;
+        var mapHeight = document.getElementById("map-canvas").offsetHeight  ;
+        var mapDim = {
+          height: mapWidth, 
+          width: mapHeight
+        };
+        return mapDim;
+      }
+
+      function getBoundsZoomLevel(bounds, mapDim) {
+        var WORLD_DIM = { height: 256, width: 256 };
+        var ZOOM_MAX = 21;
+
+        function latRad(lat) {
+          var sin = Math.sin(lat * Math.PI / 180);
+          var radX2 = Math.log((1 + sin) / (1 - sin)) / 2;
+          return Math.max(Math.min(radX2, Math.PI), -Math.PI) / 2;
+        }
+
+        function zoom(mapPx, worldPx, fraction) {
+          return Math.floor(Math.log(mapPx / worldPx / fraction) / Math.LN2);
+        }
+
+        var latFraction = (latRad(bounds.n) - latRad(bounds.s)) / Math.PI;
+
+        var lngDiff = bounds.e - bounds.w;
+        var lngFraction = ((lngDiff < 0) ? (lngDiff + 360) : lngDiff) / 360;
+
+        var latZoom = zoom(mapDim.height, WORLD_DIM.height, latFraction);
+        var lngZoom = zoom(mapDim.width, WORLD_DIM.width, lngFraction);
+        var zoomSelected = (Math.min(latZoom, lngZoom, ZOOM_MAX)) - 1; 
+        //alert("latZoom " + latZoom + " lngZoom " + lngZoom + " ZOOM_MAX " + ZOOM_MAX + " zoomSelected " + zoomSelected);
+        return zoomSelected;
+      }
+
+
+
+            
+      function refreshInfo(fusionTableID, centerLat, centerLng, zoomLevel, activeProject){
+        loadInfo(fusionTableID, centerLat, centerLng, zoomLevel);
+        setActiveProject(activeProject, fusionTableID, centerLat, centerLng, zoomLevel);
+      }
+    </script>
+
+    <!-- Google Maps API -->
+    <!-- Drop the watermarks... -->
+    <style>
+    .gmnoprint a, .gmnoprint span {
+      display:none;
+      }
+    .gmnoprint div {
+      background:none !important;
+      }
+    img[src="http://maps.gstatic.com/mapfiles/api-3/images/google_white2.png"], a[href^="http://maps.google.com/maps"]{
+      display:none !important;
+      }
+    </style>
+    <!-- Embedding map canvas -->
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=visualization"></script> 
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+    google.load('visualization', '1', {packages: ['corechart']});
+    var map;
+    var layer_0;
+    var context;
+    var particles;
+    var pointArray=[];
+    
+    function loadInfo(fusionTableID, centerLat, centerLng, zoomLevel){
+          loadMap(fusionTableID, centerLat, centerLng, zoomLevel);
+          drawVisualization(fusionTableID);
+    }
+    
+    function initialize(){
+      loadMap("1KGt7nGOtN9QOchPFfjF_tN4emt4Yc-SEOsMqDEvm", 22.208605, -103.057424, 5);
+      drawVisualization("1KGt7nGOtN9QOchPFfjF_tN4emt4Yc-SEOsMqDEvm");
+    }
+    
+    function setActiveProject(activeProject, fusionTableID, centerLat, centerLng, zoomLevel){
+        activeProjectLink = document.getElementById("activeProject");    
+        var text = document.createTextNode(activeProject);
+        activeProjectLink.removeChild( activeProjectLink.firstChild );
+        activeProjectLink.appendChild(text);
+        activeProjectLink.setAttribute('onclick', "loadInfo('" + fusionTableId + "','" + centerLat + "','" + centerLng + "','" + zoomLevel + "')");
+    }
+    
+    function loadMap(fusionTableID, centerLat, centerLng, zoomLevel) { 
+      var latlng = new google.maps.LatLng(centerLat, centerLng); 
+      var myOptions = { 
+        zoom: zoomLevel, 
+        center: latlng, 
+        disableDefaultUI: false,
+        navigationControl: false,
+        mapTypeControl: false,
+        streetViewControl: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        styles: [
+          {
+              "elementType": "labels.text",
+              "stylers": [
+                  {
+                      "visibility": "off"
+                  }
+              ]
+          },
+          {
+              "featureType": "landscape.natural",
+              "elementType": "geometry.fill",
+              "stylers": [
+                  {
+                      "color": "#f5f5f2"
+                  },
+                  {
+                      "visibility": "on"
+                  }
+              ]
+          },
+          {
+              "featureType": "administrative",
+              "stylers": [
+                  {
+                      "visibility": "off"
+                  }
+              ]
+          },
+          {
+              "featureType": "transit",
+              "stylers": [
+                  {
+                      "visibility": "off"
+                  }
+              ]
+          },
+          {
+              "featureType": "poi.attraction",
+              "stylers": [
+                  {
+                      "visibility": "off"
+                  }
+              ]
+          },
+          {
+              "featureType": "landscape.man_made",
+              "elementType": "geometry.fill",
+              "stylers": [
+                  {
+                      "color": "#ffffff"
+                  },
+                  {
+                      "visibility": "on"
+                  }
+              ]
+          },
+          {
+              "featureType": "poi.business",
+              "stylers": [
+                  {
+                      "visibility": "off"
+                  }
+              ]
+          },
+          {
+              "featureType": "poi.medical",
+              "stylers": [
+                  {
+                      "visibility": "off"
+                  }
+              ]
+          },
+          {
+              "featureType": "poi.place_of_worship",
+              "stylers": [
+                  {
+                      "visibility": "off"
+                  }
+              ]
+          },
+          {
+              "featureType": "poi.school",
+              "stylers": [
+                  {
+                      "visibility": "off"
+                  }
+              ]
+          },
+          {
+              "featureType": "poi.sports_complex",
+              "stylers": [
+                  {
+                      "visibility": "off"
+                  }
+              ]
+          },
+          {
+              "featureType": "road.highway",
+              "elementType": "geometry",
+              "stylers": [
+                  {
+                      "color": "#ffffff"
+                  },
+                  {
+                      "visibility": "simplified"
+                  }
+              ]
+          },
+          {
+              "featureType": "road.arterial",
+              "stylers": [
+                  {
+                      "visibility": "simplified"
+                  },
+                  {
+                      "color": "#ffffff"
+                  }
+              ]
+          },
+          {
+              "featureType": "road.highway",
+              "elementType": "labels.icon",
+              "stylers": [
+                  {
+                      "color": "#ffffff"
+                  },
+                  {
+                      "visibility": "off"
+                  }
+              ]
+          },
+          {
+              "featureType": "road.highway",
+              "elementType": "labels.icon",
+              "stylers": [
+                  {
+                      "visibility": "off"
+                  }
+              ]
+          },
+          {
+              "featureType": "road.arterial",
+              "stylers": [
+                  {
+                      "color": "#ffffff"
+                  }
+              ]
+          },
+          {
+              "featureType": "road.local",
+              "stylers": [
+                  {
+                      "color": "#ffffff"
+                  }
+              ]
+          },
+          {
+              "featureType": "poi.park",
+              "elementType": "labels.icon",
+              "stylers": [
+                  {
+                      "visibility": "off"
+                  }
+              ]
+          },
+          {
+              "featureType": "poi",
+              "elementType": "labels.icon",
+              "stylers": [
+                  {
+                      "visibility": "off"
+                  }
+              ]
+          },
+          {
+              "featureType": "water",
+              "stylers": [
+                  {
+                      "color": "#71c8d4"
+                  }
+              ]
+          },
+          {
+              "featureType": "landscape",
+              "stylers": [
+                  {
+                      "color": "#e5e8e7"
+                  }
+              ]
+          },
+          {
+              "featureType": "poi.park",
+              "stylers": [
+                  {
+                      "color": "#8ba129"
+                  }
+              ]
+          },
+          {
+              "featureType": "road",
+              "stylers": [
+                  {
+                      "color": "#ffffff"
+                  }
+              ]
+          },
+          {
+              "featureType": "poi.sports_complex",
+              "elementType": "geometry",
+              "stylers": [
+                  {
+                      "color": "#c7c7c7"
+                  },
+                  {
+                      "visibility": "off"
+                  }
+              ]
+          },
+          {
+              "featureType": "water",
+              "stylers": [
+                  {
+                      "color": "#a0d3d3"
+                  }
+              ]
+          },
+          {
+              "featureType": "poi.park",
+              "stylers": [
+                  {
+                      "color": "#91b65d"
+                  }
+              ]
+          },
+          {
+              "featureType": "poi.park",
+              "stylers": [
+                  {
+                      "gamma": 1.51
+                  }
+              ]
+          },
+          {
+              "featureType": "road.local",
+              "stylers": [
+                  {
+                      "visibility": "off"
+                  }
+              ]
+          },
+          {
+              "featureType": "road.local",
+              "elementType": "geometry",
+              "stylers": [
+                  {
+                      "visibility": "on"
+                  }
+              ]
+          },
+          {
+              "featureType": "poi.government",
+              "elementType": "geometry",
+              "stylers": [
+                  {
+                      "visibility": "off"
+                  }
+              ]
+          },
+          {
+              "featureType": "landscape",
+              "stylers": [
+                  {
+                      "visibility": "off"
+                  }
+              ]
+          },
+          {
+              "featureType": "road",
+              "elementType": "labels",
+              "stylers": [
+                  {
+                      "visibility": "off"
+                  }
+              ]
+          },
+          {
+              "featureType": "road.arterial",
+              "elementType": "geometry",
+              "stylers": [
+                  {
+                      "visibility": "simplified"
+                  }
+              ]
+          },
+          {
+              "featureType": "road.local",
+              "stylers": [
+                  {
+                      "visibility": "simplified"
+                  }
+              ]
+          },
+          {
+              "featureType": "road"
+          },
+          {
+              "featureType": "road"
+          },
+          {},
+          {
+              "featureType": "road.highway"
+          }
+      ]
+      };
+      map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+      layer_0 = new google.maps.FusionTablesLayer({
+        query: {
+          select: "col2",
+          from: fusionTableID // We need to make this global or interchangeable...
+        },
+        map: map,
+        styleId: 2,
+        templateId: 2
+      });
+    
+      }
+      
+    google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        google.load('visualization', '1', { packages: ['corechart'] });
+        
+        // SUMMARY CHARTS powered by Google Charts API
+        // Settings     
+        function drawVisualization(fusionTableID) {
+           
+          var queryText = encodeURIComponent("SELECT count(SurveyID) FROM 1KGt7nGOtN9QOchPFfjF_tN4emt4Yc-SEOsMqDEvm");
+        
+          // Chart 1
+          google.visualization.drawChart({
+            "containerId": "chart1",
+            "dataSourceUrl": 'https://www.google.com/fusiontables/gvizdata?tq=',
+            "query":"SELECT  count(Vivienda), count(SurveyID) FROM " + fusionTableID,
+            "chartType": "ColumnChart",
+            "color": "green", //#99E699,
+            "options": {
+              "title":"",
+              "height" : 240,
+              "width" : 300,
+              "vAxis": {"title": ""},
+              "hAxis": {"title": "Número de encuestas"},
+              "isVertical": 'true',
+              "showAxisLines": 'false',
+              "legend": 'none',
+              
+             
+              }
+            });
+        
+          // Chart 2
+          google.visualization.drawChart({
+            "containerId": "chart2",
+            "dataSourceUrl": 'https://www.google.com/fusiontables/gvizdata?tq=',
+            "query":"SELECT Username, count(SurveyID) FROM " + fusionTableID + " GROUP BY Username ORDER BY count(SurveyID) DESC",
+            "refreshInterval": 5,
+            "chartType": "BarChart",
+            "color": "green", //#99E699,
+            "options": {
+              "title":"",
+              "vAxis": {"title": "Usuarios"},
+              "hAxis": {"title": "Número de encuestas"},
+              "showAxisLines": 'false',
+              "legend": 'none',
+              "width" : 340,
+             
+              }
+            });
+        
+          // Chart 3
+          google.visualization.drawChart({
+            "containerId": "chart3",
+            "dataSourceUrl": 'https://www.google.com/fusiontables/gvizdata?tq=',
+            "query":"SELECT Date, count(SurveyID) FROM " + fusionTableID + " GROUP BY Date ORDER BY Date ASC",
+            "refreshInterval": 5,
+            "chartType": "ScatterChart",
+            "color": "green", //#99E699,
+            "options": {
+              "title":"",
+              "vAxis": {"title": "Numero de Encuestas"},
+              "hAxis": {"title": "Fecha"},
+              "legend": 'none',
+             "width" : 340,
+              }
+            });
+        
+          // Chart 4
+          google.visualization.drawChart({
+            "containerId": "chart4",
+            "dataSourceUrl": 'https://www.google.com/fusiontables/gvizdata?tq=',
+            "query":"SELECT Vivienda, count(SurveyID) FROM " + fusionTableID + " GROUP BY Vivienda ORDER BY count(SurveyID) DESC",
+            "refreshInterval": 5,
+            "chartType": "PieChart",
+            "color": "green", //#99E699,
+            "options": {
+              "title":"",
+              "vAxis": {"title": "Example Y-Axis"},
+              "hAxis": {"title": "Example X-Axis"},
+              "width" : 340,
+              "legend": {"height": 600},
+              
+             
+              }
+            });
+        
+          // Chart 5
+          google.visualization.drawChart({
+            "containerId": "chart5",
+            "dataSourceUrl": 'https://www.google.com/fusiontables/gvizdata?tq=',
+            "query":"SELECT Construido, count(SurveyID) FROM " + fusionTableID + " WHERE Construido > '' GROUP BY Construido ORDER BY count(SurveyID) DESC ",
+            "refreshInterval": 5,
+            "chartType": "PieChart",
+            "options": {
+              "title":"",
+              "vAxis": {"title": "Example Y-Axis"},
+              "hAxis": {"title": "Example X-Axis"},
+              "width" : 340,
+              }
+            });
+        
+          // Chart 6
+          google.visualization.drawChart({
+            "containerId": "chart6",
+            "dataSourceUrl": 'https://www.google.com/fusiontables/gvizdata?tq=',
+            "query":"SELECT Equipamiento, count(SurveyID) FROM " + fusionTableID + " WHERE Equipamiento > ''  GROUP BY Equipamiento ORDER BY count(SurveyID) DESC",
+            "refreshInterval": 5,
+            "chartType": "PieChart",
+            "color": "green", //#99E699,
+            "options": {
+              "title":"",
+              "vAxis": {"title": "Example Y-Axis"},
+              "hAxis": {"title": "Example X-Axis"},
+              "width" : 340,
+              }
+            });
+        }
+        // google.setOnLoadCallback(drawVisualization);
+        </script>
+
+    <!-- Base Bootstrap Content -->
+    <title>Fundación Hogares + Flocktracker</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/theme.css" rel="stylesheet">
+    <script src="js/ie-emulation-modes-warning.js"></script>
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+
+  </head>
+
+  <body role="document">
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" style="padding-top:8px;" href="http://www.fundacionhogares.org/"><img src="img/FH_Logo 2014.png" style="width:32px;"/></a>
+          <a class="navbar-brand" style="padding-top:8px;" href="http://flocktracker.mit.edu"><img src="img/ft_logoxl.png" style="width:32px;"/></a>
+          <a class="navbar-brand" href="#">FH Flocktracker Dashboard</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#" id="activeProject">Proyecto Activo</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Selección del sitio<span class="caret"></span></a>
+              <ul class="dropdown-menu" id="projectSelectorDropdown">
+              </ul>
+            </li>         
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div id="map-canvas"></div>
+
+    <div class="container theme-showcase" role="main">
+
+      <div class="page-header">
+        <h1>Estadísticas</h1>
+      </div>
+      <div class="row">
+
+        <div class="col-sm-4">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">Encuestas Totales</h3>
+            </div>
+            <div class="panel-body">
+              <div id="chart1"
+                style=  "width: 250px; 
+                        height: 250px;
+                        float: left;
+                        z-index: 2;
+                        position: relative;">
+              </div>
+            </div>
+          </div>
+          
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">Encuestas Totales por Usuario</h3>
+            </div>
+            <div class="panel-body">
+              <div id="chart2"
+                style=  "width: 250px;
+                        height: 250px;
+                        float: left;
+                        z-index: 2;
+                        position: relative;">
+              </div>
+            </div>
+          </div>
+        </div><!-- /.col-sm-4 -->
+
+        <div class="col-sm-4">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">Encuestas Totales por Día</h3>
+            </div>
+            <div class="panel-body">
+              <div id="chart3"
+                style=  "width: 250px;
+                        height: 250px;
+                        float: left;
+                        z-index: 2;
+                        position: relative;">
+              </div>
+            </div>
+          </div>
+          
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">Variable Vivienda</h3>
+            </div>
+            <div class="panel-body">
+              <div id="chart4"
+                style=  "width: 250px;
+                        height: 250px;
+                        float: left;
+                        z-index: 2;
+                        position: relative;">
+              </div>
+            </div>
+          </div>
+        </div><!-- /.col-sm-4 -->
+
+        <div class="col-sm-4">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">Variable Construido</h3>
+            </div>
+            <div class="panel-body">
+              <div id="chart5"
+                style=  "width: 250px; 
+                        height: 250px;
+                        float: left;
+                        z-index: 2;
+                        position: relative;">
+              </div>
+            </div>
+          </div>
+          
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">Variable Equipamiento</h3>
+            </div>
+            <div class="panel-body">
+              <div id="chart6"
+                style=  "width: 250px;
+                        height: 250px;
+                        float: left;
+                        z-index: 2;
+                        position: relative;">
+              </div>
+            </div>
+          </div>
+        </div><!-- /.col-sm-4 -->
+
+      </div><!-- /.row -->
+    </div>
+
+
+  <br>
+  <br>
+  <br>
+
+  <hr>
+
+  <br>
+  <br>
+  <br>
+
+  <div><table align="center"><tr><td><a href="http://flocktracker.mit.edu"><img src="img/ft_logoxl.png" style="width:100px"/></a></td></tr></table></div>
+  <center>Powered by Flocktracker.</center><br>
+
+  <div><table align="center"><tr><td><a href="http://www.dusp.mit.edu"><img src="./img/partner_logos-01.png" style="opacity:0.4"/></a></td><td><a href="http://www.urbanlaunchpad.org/"><img src="./img/partner_logos-02.png" style="opacity:0.4"/></a></td><td><a href="http://smart.mit.edu/"><img src="./img/partner_logos-03.png" style="opacity:0.4"/></a></td><td><a href="http://smart.mit.edu/research/future-urban-mobility/future-urban-mobility.html"><img src="./img/partner_logos-04.png" style="opacity:0.4"/></a></td><td><a href="http://misti.mit.edu/mit-mexico"><img src="./img/partner_logos-05.png" style="opacity:0.4"/></a></td><td><a href="http://www.grupoprodi.com/"><img src="./img/partner_logos-06.png" style="opacity:0.4"/></a></td></tr></table></div>
+  <center>Alianzas actuales</center><br>
+
+  <br>
+  <br>
+  <br>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script>queryProjects();</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/docs.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0076)chrome-extension://nhgpbmbhocboaalioananelcgfahjpai/content/iframe.html?3156 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title></title>
+		<link href="chrome-extension://nhgpbmbhocboaalioananelcgfahjpai/css/citelighter.css" media="screen" rel="stylesheet" type="text/css">
+
+		<script type="text/javascript" src="chrome-extension://nhgpbmbhocboaalioananelcgfahjpai/js/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="chrome-extension://nhgpbmbhocboaalioananelcgfahjpai/js/jquery.mousewheel.min.js"></script>
+
+		<script type="text/javascript" src="chrome-extension://nhgpbmbhocboaalioananelcgfahjpai/js/toolbar_popups.js"></script>
+		<script type="text/javascript" src="chrome-extension://nhgpbmbhocboaalioananelcgfahjpai/js/auth.js"></script>
+		<script type="text/javascript" src="chrome-extension://nhgpbmbhocboaalioananelcgfahjpai/js/export_menu.js"></script>
+		<script type="text/javascript" src="chrome-extension://nhgpbmbhocboaalioananelcgfahjpai/js/extract_details.js"></script>
+		<script type="text/javascript" src="chrome-extension://nhgpbmbhocboaalioananelcgfahjpai/js/capture.js"></script>
+		<script type="text/javascript" src="chrome-extension://nhgpbmbhocboaalioananelcgfahjpai/js/notification.js"></script>
+		<script type="text/javascript" src="chrome-extension://nhgpbmbhocboaalioananelcgfahjpai/js/toolbar.js"></script>
+
+		<script type="text/javascript" src="chrome-extension://nhgpbmbhocboaalioananelcgfahjpai/js/initial_load.js"></script>
+	</head>
+
+	<body>
+		<div id="citeligter-toolbar-overlay" style="position:fixed;top:0;left:0;bottom:0;right:0;z-index:-1;"></div>
+		<div id="citelighter-toolbar" class="citelighter-toolbar" style="display: none;">
+
+			<span id="citelighter-main-controls">
+				<button type="button" id="citelighter-capture-btn" class="citelighter-capture-btn-cls" title="Copy your selection" disabled="disabled">
+					<div class="citelighter-img">Capture</div>
+				</button>
+
+				<span id="citelighter-toolbox-item">
+					<button id="citelighter-projects-list" disabled="disabled">Current Project</button>
+				</span>
+
+				<button id="citelighter-view-citations" class="citelighter-view-citations-cls" title="View Project Citations" disabled="disabled">
+					<div class="citelighter-img">View</div>
+				</button>
+
+				<button id="citelighter-export-menu" title="Export Project" disabled="disabled">
+					<div class="citelighter-img">Export<span class="citelighter-arrow"></span></div>
+				</button>
+
+                <button id="citelighter-view-clipboard" class="citelighter-view-clipboard-cls" title="Toggle Google Docs Clipboard" disabled="disabled">
+                    <div class="citelighter-img write">Write</div>
+                </button>
+			</span>
+
+			<span id="citelighter-misc-controls">
+
+				<!-- <a id="citelighter-home-btn" class="menuitem-iconic" title="My Projects" href="http://www.citelighter.com" target="_blank">
+					<img id="citelighter-home-img" src="" alt="My Projects"/>
+				</a> -->
+				<span id="citelighter-home-btn" title="My Projects">
+					<img id="citelighter-home-img" src="chrome-extension://nhgpbmbhocboaalioananelcgfahjpai/images/citelighter_theme/home.png" alt="My Projects">
+				</span>
+
+				<span id="citelighter-login-panel-btn" title="Login on Citelighter">
+					<img id="citelighter-login-img" src="chrome-extension://nhgpbmbhocboaalioananelcgfahjpai/images/citelighter_theme/arrow_down41.png" alt="Login on Citelighter">
+				</span>
+
+				<span id="citelighter-logout-panel-btn" title="Log Out" style="display: none;">
+					<img id="citelighter-logout-img" src="chrome-extension://nhgpbmbhocboaalioananelcgfahjpai/images/citelighter_theme/arrow_down41.png" alt="Log Out">
+				</span>
+
+				<span id="citelighter-options-btn" title="Options">
+					<img id="citelighter-options-img" src="chrome-extension://nhgpbmbhocboaalioananelcgfahjpai/images/citelighter_theme/options.png" alt="Options">
+				</span>
+
+				<span id="citelighter-help-btn" title="Help">
+					<img id="citelighter-help-img" src="chrome-extension://nhgpbmbhocboaalioananelcgfahjpai/images/citelighter_theme/help.png" alt="Help">
+				</span>
+
+				<span id="citelighter-refresh-btn" class="citelighter-refresh-btn-clss" title="Refresh">
+					<img id="citelighter-refresh-img" src="chrome-extension://nhgpbmbhocboaalioananelcgfahjpai/images/citelighter_theme/refresh.png" alt="Refresh">
+				</span>
+
+			</span>
+
+		</div>
+
+        <div id="citelighter-notification-panel" class="citelighter-panel-el citelighter-notification-panel" style="display:none;">
+            <div id="citelighter-notification-toolbar" class="citelighter-notification-toolbar">
+                <span id="citelighter-notification-message" class="citelighter-notification-message">
+                    <span class="citelighter-pro-not-message">Add your research directly to any Google Doc!</span><a href="http://www.citelighter.com/gopro" target="_blank">Get your Citelighter Pro account now!</a>
+                </span>
+                <button id="citelighter-close-notification">
+					<img src="chrome-extension://nhgpbmbhocboaalioananelcgfahjpai/images/citelighter_theme/dialog_close.png" alt="Close">
+				</button>
+            </div>
+        </div>
+
+		<div id="citelighter-fast-capture-panel" class="citelighter-toolbar-popup citelighter-panel-el" style="display: none; top: 0px;">
+			<div id="citelighter-fast-capture-toolbar">
+
+				<span class="citelighter-fast-capture-loader-box">
+					<span class="citelighter-fast-capture-loader-label">Saving...</span>
+					<img id="citelighter-fast-capture-loader-img" src="chrome-extension://nhgpbmbhocboaalioananelcgfahjpai/images/2.gif" alt="" width="16" height="16">
+				</span>
+
+				<span class="citelighter-fast-capture-status-box" style="display:none;">
+					<span id="citelighter-fast-capture-status-text" class="citelighter-fast-capture-loader-label">Saved</span>
+					<img id="citelighter-fast-capture-status-icon" src="chrome-extension://nhgpbmbhocboaalioananelcgfahjpai/images/citelighter_theme/checkmark.png" alt="" width="15" height="15">
+				</span>
+
+				<input type="text" id="citelighter-captured-text-box" maxlength="100" size="100" value="No capture text" readonly="true">
+				<button id="citelighter-fast-capture-edit-cite-btn" class="citelighter-fast-capture-edit-cite-empty-fields" disabled="disabled">Edit Citation<span class="citelighter-img">&nbsp;</span>
+				</button>
+				<button id="citelighter-fast-capture-add-comment-btn" disabled="disabled">Add Comment</button>
+
+				<button id="citelighter-fast-capture-close-btn">
+					<img src="chrome-extension://nhgpbmbhocboaalioananelcgfahjpai/images/citelighter_theme/dialog_close.png" alt="">
+				</button>
+
+			</div>
+		</div>
+
+        <div id="citelighter-warning-panel" class="citelighter-panel-el citelighter-notification-panel" style="display:none;">
+            <div id="citelighter-warning-toolbar" class="citelighter-notification-toolbar">
+                <span class="citelighter-notification-message"></span>
+                <button id="citelighter-close-warning">
+					<img src="chrome-extension://nhgpbmbhocboaalioananelcgfahjpai/images/citelighter_theme/dialog_close.png" alt="Close">
+				</button>
+            </div>
+        </div>
+
+		<div id="citelighter-project-list-popup" class="citelighter-toolbar-popup" style="display: none;">
+		<div>Current Project</div></div>
+
+		<div id="citelighter-export-popup" class="citelighter-toolbar-popup" style="display: none;">
+			<div id="citelighter-export-word" class="citelighter-menuitem">
+				<label>Export to Word</label>
+			</div>
+			<div id="citelighter-export-email" class="citelighter-menuitem">
+				<label>Send via Email</label>
+			</div>
+		</div>
+
+		<div id="citelighter-login-panel" class="citelighter-toolbar-popup" style="display: none;">
+			<div class="citelighter-login-frm-el">
+				<input type="text" id="citelighter-username-id" placeholder="Email address">
+				<input type="password" id="citelighter-password-id" placeholder="Password">
+				<div>
+					<input type="checkbox" id="citelighter-remember-id" checked="true">
+					<label for="citelighter-remember-id">Remember me</label>
+					<button id="citelighter-login-btn-id" title="Login on Citelighter">GO</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="citelighter-logout-panel" class="citelighter-toolbar-popup" style="display: none;">
+			<button id="citelighter-logout-btn-id">Logout</button>
+		</div>
+
+	
+
+</body></html>

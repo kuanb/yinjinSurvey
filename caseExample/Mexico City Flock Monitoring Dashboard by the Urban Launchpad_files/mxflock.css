@@ -1,0 +1,835 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+    }
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+    }
+    
+html, body {
+    overflow-x: hidden;
+}    
+    
+body {
+	line-height: 1;
+	background-image:url('http://www.urbanlaunchpad.org/dhaka/img/background.png');
+	background-size: 100% 100%;
+    }
+ol, ul {
+	list-style: none;
+    }
+blockquote, q {
+	quotes: none;
+    }
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+    }
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+    }
+
+/* Typography */
+
+body,
+input,
+textarea {
+    font: 14px/20px 'OpenSans', sans-serif;
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+    }
+
+pre,
+code { font:normal 12px/20px monospace; }
+
+.shadow {
+    text-shadow: 0 0 10px #000;
+    }
+
+h1, h2, h3, h4, h5, h6 { 
+    margin: 0;
+    }
+    
+h1 {
+    font-family: 'Lato', "Arial Narrow", sans-serif;
+    line-height: 1em;
+    font-size: 3em;
+    font-weight: 800;
+    color: #fff;
+    text-transform: uppercase;
+    }
+
+h2 {
+    font-family: 'Lato', "Arial Narrow", sans-serif;
+    line-height: 1em;
+    font-size: 2em;
+    font-weight: 600;
+    color: #fff;
+    }
+
+h3 {
+    font-family: 'Lato', "Arial Narrow", sans-serif;
+    line-height: 1.6em;
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #fff;
+    }
+
+h4 {
+    font-family: 'Lato', "Arial Narrow", sans-serif;
+    line-height: 1.2em;
+    font-size: 1em;
+    font-weight: 600;
+    color: #fff;
+    text-transform: uppercase;
+    }
+
+.footer h4 {
+    font-family: 'Lato', "Arial Narrow", sans-serif;
+    line-height: 1.2em;
+    font-size: 1em;
+    font-weight: 600;
+    color: #333;
+    text-transform: uppercase;
+    }
+
+
+h5 {
+    font-family: 'Lato', "Arial Narrow", sans-serif;
+    line-height: 1.6em;
+    font-size: 1em;
+    font-weight: 900;
+    color: #fff;
+    }
+
+h6 {
+    font-family: 'Lato', "Arial Narrow", sans-serif;
+    line-height: 1.5em;
+    font-size: 1em;
+    font-weight: 900;
+    text-align: center;
+    color: #fff;
+    margin-top: 38px;
+    }
+
+
+a {
+    color:#369;
+    text-decoration:none;
+    }
+
+/* Layout */
+
+h1 {
+    display: block;
+    margin: 20px 0;
+    text-align: center;
+    }
+
+h2 {
+    display: block;
+    margin: 20px 0;
+    text-align: center;
+    }
+
+h3 {
+    display: block;
+    margin: 20px 0;
+    text-align: center;
+    }
+    
+.about > h3 {
+	width: 820px;
+	margin: auto;
+	text-shadow: 0 0 18px #000;
+	}
+
+h4 {
+    display: block;
+    margin: 20px 0;
+    text-align: center;
+    }
+
+h5 {
+    display: block;
+    margin: 16px 0;
+    text-align: center;
+    }
+
+p {
+    margin-bottom: 20px;
+    font-size: 100%;
+    }
+
+body > div {
+    position: relative;
+    z-index: 1;
+    }
+
+.header_img {
+	width:100%;
+	height: 300px;
+	display: block;
+	}
+
+.background_img {
+	width:100%;
+	height: 300px;
+	display: block;
+	z-index: 0;
+	}
+
+.map {
+    position: relative;
+    height: 540px;
+    width: 100%;
+    z-index: 0;
+    }
+
+#branding {
+	position: absolute;
+    height: 170px;
+    width: 150px;
+    left: 0;
+    float: left;
+    background: url(../img/logo.svg) 20px 30px no-repeat;
+    }
+
+.header {
+	position: relative;
+	width: 100%;
+    border-bottom: 5px solid #333;
+    display: inline block;
+    float: left;
+    background: white;
+    } 
+    
+#slider-box {
+	position: relative;
+	width: 100%;
+	height: 60px;
+	display: block;
+	float: left;
+	background: #333;
+	z-index: 3;
+	margin-top: -26px;
+	}
+
+.content {
+	position: relative;
+	width: 25%;
+	bottom: 0px;
+    border-top: 0px solid #333;
+    display: inline block;
+    float: left;
+    z-index: 3;
+    margin-top: -10px;
+    }
+    
+.chart {
+	position: relative;
+	width: 25%;
+	bottom: 0px;
+    display: inline block;
+    float: left;
+    }   
+    
+.graph {
+	position: relative;
+	width: 100%;
+	margin-bottom: -10px;
+    display: block;
+    float: left;
+    }  
+
+.footer {
+    border-top: 5px solid #333;
+	position: relative;
+	margin-top: -2px;
+	width: 100%;
+    display: inline block;
+    float: left;
+    background: white;
+    } 
+    
+.map-embed {
+	position: relative;
+	margin-top: -10px;
+	width: 100%;
+    display: block;
+    float: left;
+    }     
+ 
+.block {
+	position: relative;
+    height: 200px;
+	width: 100%;
+	bottom: 0px;
+	margin-top: -200px;
+    background: rgb(255,255,255); /* old ie */
+    background: rgba(255,255,255,.5);
+    border-bottom: 1px solid #ccc;
+    border-top: 5px solid #333;
+    overflow-y: hidden;
+    z-index: 2;
+    }    
+
+
+/*HEADER*/
+
+#headerback {
+    background: rgb(255,255,255); /* old ie */
+    background: rgba(255,255,255,1);
+    width: 100%;
+    }
+
+#header {
+    position: relative;
+    display: block;
+    width: 900px;
+    margin: 0 auto; 
+    }
+
+/* NAVIGATION */    
+
+#introduction {
+    position: relative;
+    width: 100%;
+    margin: 60px 0 80px 0;
+    z-index: 4;
+    }     
+
+.intro-box {
+    position: relative;
+    width: 800px;
+    margin: auto;
+    display: block;
+    }
+
+.block {
+    position: relative;
+    border-top: 1px dotted #fff;
+    border-bottom: 1px dotted #fff;
+    padding: 20px 0 20px 0;
+    margin-top: 60px;
+    }
+
+.button-block {
+    width: 870px;
+    position: relative;
+    margin: 20px 0px 20px 0px;
+    display: block;
+}
+
+.button {
+    border-radius: 100%;
+    border: 4px dotted #fff;
+    width: 100px;
+    height: 100px;
+    margin: 60px 10px 80px 10px;
+    float: left;
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    } 
+
+a.button:hover {
+    background: rgba(59,178,220,0.8);
+    }
+
+.button-top {
+    position: fixed;
+    top: 540px;
+    right: -20px;
+    z-index: 3;
+}
+
+
+.button-top h6 {
+    margin-top: 28px;
+    text-transform: uppercase;
+    }
+
+
+/*SUMMARY*/
+#summary {
+    position: relative;
+    width: 100%;
+    float: left;
+    display: block;
+    padding-bottom: 40px;     
+    }
+
+/*LIVE MAP*/
+
+#livemap {
+    position: relative;
+    width: 100%;
+    float: left;
+    display: block;
+    padding-bottom: 40px;     
+    }
+
+/*MAP TRACES*/
+
+#maptraces {
+    position: relative;
+    width: 100%;
+    float: left;
+    display: block;
+    padding-bottom: 40px;     
+    }
+
+/*IMAGES*/
+
+#images {
+    position: relative;
+    width: 100%;
+    float: left;
+    display: block;
+    padding-bottom: 40px;     
+    }
+
+/*VOLUNTEER*/
+
+#volunteer {
+    position: relative;
+    width: 100%;
+    float: left;
+    display: block;
+    padding-bottom: 40px;     
+    }
+
+/*TRIPS*/
+
+#trips {
+    position: relative;
+    width: 100%;
+    float: left;
+    display: block;
+    padding-bottom: 40px;     
+    }
+
+/*SURVEY*/
+
+#survey {
+    position: relative;
+    width: 100%;
+    float: left;
+    display: block;
+    padding-bottom: 40px;     
+    }
+
+/*STUDENT*/
+
+.layers {
+    position: absolute;
+    width: 120px;
+    left: 0px;
+    top: 80px;
+    }
+    
+.layers a {
+    padding: 10px;
+    margin: 1px 0;
+    border-left: 5px solid #fff;
+    background: white;
+    color: #333;
+    }
+    
+.layers a:hover, .layers a:focus, .layers a.active {
+    border-left: 5px solid #333;
+    background: #99C6E4;
+    color: white;
+    }
+
+.layers#student {top: 290px;}
+
+#student.layers a:hover, #student.layers a:focus, #student.layers a.active {
+    border-left: 5px solid #333;
+    background: #CCE3F2;
+    color: white;
+    }
+    
+.layers a {
+	font: 1em/1.75em 'OswaldBook',  "Arial Narrow", sans-serif;
+    width: 113px;
+    float: left;
+    margin-right: 20px;
+    }
+
+.layers a img {
+    float: left;
+    margin-top: 1px;
+    }
+
+/*SHOPPER*/
+
+.layers2 {
+    position: absolute;
+    width: 120px;
+    left: 0px;
+    top: 80px;
+    }
+    
+.layers2 a {
+    padding: 10px;
+    margin: 1px 0;
+    border-left: 5px solid #fff;
+    background: white;
+    color: #333;
+    }
+    
+.layers2 a:hover, .layers2 a:focus, .layers2 a.active {
+    border-left: 5px solid #333;
+    background: #99C6E4;
+    color: white;
+    }
+
+
+.layers2#shopper {top: 1080px;}
+
+#shopper.layers2 a:hover, #shopper.layers2 a:focus, #shopper.layers2 a.active {
+    border-left: 5px solid #333;
+    background: #CCE3F2;
+    color: white;
+    }
+
+.layers2 a {
+	font: 1em/1.75em 'OswaldBook',  "Arial Narrow", sans-serif;
+    width: 113px;
+    float: left;
+    margin-right: 20px;
+    }
+
+.layers2 a img {
+    float: left;
+    margin-top: 1px;
+    }
+
+
+#search {
+    height: 30px;
+    margin-bottom: 20px;
+    }
+
+form.geocode input[type=text] {
+    font-size: .85em;
+    color: #333;
+    height: 18px;
+    width: 200px;
+    display: block;
+    float: right;
+    padding: 5px;
+    margin: 0;
+    border: 1px solid  #ccc;
+    }
+    
+form.geocode input[type=submit] {
+    background: #2da0ef url(../img/search.png) no-repeat -0px -0px;
+    text-indent: -9999px;
+    width: 30px;
+    height: 30px;
+    display: block;
+    border: none;
+    margin: 0;
+    padding: 0;
+    float: right;
+    cursor: pointer;
+    }
+    
+    form.geocode input[type=submit]:hover { background-color:#333; }
+	form.geocode input[type=submit]:active { background-color:#000; }
+	
+form.geocode.loading input[type=submit] {
+    background: url(img/ajax-loader.gif) no-repeat 50% 50%;
+    border-color:#bbb;
+    background-color:#ddd;
+    box-shadow:inset rgba(0,0,0,0.1) 0px 1px 3px;
+    -moz-box-shadow:inset rgba(0,0,0,0.1) 0px 1px 3px;
+    -webkit-box-shadow:inset rgba(0,0,0,0.1) 0px 1px 3px;
+    }
+    
+#geocode-error {
+    display: none;
+    float: left;
+    position: relative;
+    top: 1em;
+    margin-left: 20px;
+    color: #e34f4f;
+    font-size: 1em;
+    line-height: 0em;
+    }
+    
+a.zoomer {
+	position: absolute;
+    top: 10px;
+    }
+
+/* Map */
+
+.wax-tooltip {
+    border:none;
+    background:none;
+    border-radius:none;
+    -moz-border-radius:none;
+    -webkit-border-radius:none;
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    left: auto;
+    top: auto;
+    right: 10px;
+    border: none;
+    color: white;
+    font-size: 11px;
+    width: 200px;
+    margin-left: -100px;
+    line-height: 16px;
+    margin-bottom: 20px;
+    overflow: visible;
+    }
+
+.wax-tooltip .inner {
+    padding: 4px 9px;
+    -o-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background: #333;
+    z-index: 2;
+    /*text-transform: lowercase;*/
+    }
+    
+.wax-tooltip .inner:first-letter {
+    text-transform: uppercase;
+    }
+    
+.wax-tooltip .desc2 { font-style: italic; }
+
+.wax-tooltip .offense { font-weight: 700; }
+
+.wax-tooltip .tip {
+    background: rgba(51,51,51,1);
+    height: 10px;
+    width: 10px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    position: relative;
+    top: -5px;
+    left: 50%;
+    margin-left: -14px;
+    z-index: 1;
+    }
+
+.wax-tooltip.flip-y {
+    margin-top: 20px;
+    margin-bottom: auto;
+    }
+
+.wax-tooltip.flip-y .tip {
+    position: absolute;
+    margin-top: 5px;
+    }
+
+.wax-legends {
+    left: auto;
+    right: 10px;
+    height: 125px;
+    overflow-x: hidden;
+    bottom: 215px;
+    font-size: 11px;
+	font: .9em/1.5em 'OpenSans', sans-serif;
+    }
+    
+.wax-legends a {
+    color: rgb(51, 51, 51);
+    }
+
+.wax-legends .wax-legend {
+    width: 275px;
+    }
+
+.wax-legends .scale img { 
+    float: left; 
+    }
+
+.wax-legend {
+    padding: 10px;
+    }
+
+.wax-legend .scale {
+    width: 100%;
+    margin-bottom: 0;
+    }
+.wax-legend > div {
+    clear: both;
+    } 
+.wax-legend .scale span {
+    display: block;
+    width: 30px;
+    float: left;
+    text-align: center;
+    font-size: 9px;
+    }
+
+.wax-legends .scale label {
+    display: block;
+    margin-bottom: 5px;
+    }
+
+.wax-legend .scale > div {
+    }
+
+.wax-attribution {
+    bottom: 205px;
+    }
+
+.wax-share h3 {
+    margin: 0px 0px 10px;
+    font-size: 16px;
+    font-weight: normal;
+    }
+
+.wax-share strong {
+    font-weight: 700;
+    }
+
+.wax-share small {
+    font-size: 11px;
+    color: #999;
+    display: block;
+    margin-top: 0.5em;
+    }
+
+.share {
+    top: 45px;
+    z-index: 2;
+    }
+    
+.mmg-default {
+    width: 20px;
+    height: 40px;
+    background: url(../img/map.png) -120px -30px;
+    left: -10px;
+    top: -30px;
+    }
+    
+/* embed */
+
+.embed .map {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: white;
+    z-index: 1000;
+    }
+
+.embed #header, .embed #content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10001;
+    visibility: hidden;
+    overflow: hidden;
+    }
+
+.embed a.zoomer {
+    top: 10px;
+    }
+
+.embed .wax-tooltip {
+    top: 10px;
+    right: 10px;
+    }
+
+.embed .wax-legends {
+    right: 10px;
+    bottom: 10px;
+    }
+
+.embed .share {
+    top: 45px;
+    z-index: 1001;
+    }
+
+.embed .layers {
+    position: absolute	;
+    top: 90px;
+    left: 0;
+    z-index: 1001;
+    visibility: visible;
+    }
+
+.embed .layer {
+    width: 100px;
+    text-align: center;
+    border: 1px solid #ccc;
+    }
+    
+.embed .layers2 {
+    position: absolute	;
+    top: 90px;
+    left: 0;
+    z-index: 1001;
+    visibility: visible;
+    }
+
+.embed .layer2 {
+    width: 100px;
+    text-align: center;
+    border: 1px solid #ccc;
+    }    
+    
+
+/* Animation */
+
+.map-tile-loaded {
+    -webkit-animation-name:               fade-in;
+    -moz-animation-name:                  fade-in;
+    -ms-animation-name:                   fade-in;
+    -o-animation-name:                    fade-in;
+    -webkit-animation-timing-function:    linear;
+    -moz-animation-timing-function:       linear;
+    -ms-animation-timing-function:        linear;
+    -o-animation-timing-function:         linear;
+    -webkit-animation-duration:           .2s;
+    -moz-animation-duration:              .2s;
+    -ms-animation-duration:               .2s;
+    -o-animation-duration:                .2s;
+}
+
+@-webkit-keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@-moz-keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@-ms-keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@-o-keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }

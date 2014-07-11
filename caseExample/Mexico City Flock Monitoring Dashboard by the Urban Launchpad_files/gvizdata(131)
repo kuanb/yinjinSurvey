@@ -1,0 +1,1 @@
+google.visualization.Query.setResponse({version:'0.5',reqId:'9',status:'ok',table:{p:{totalrows:2},cols:[{id:'col14',label:'gender',type:'string'},{id:'#agg#COUNT',label:'count()',type:'number'}],rows:[{c:[{v:'male'},{v:764.0}]},{c:[{v:'female'},{v:761.0}]}]}})

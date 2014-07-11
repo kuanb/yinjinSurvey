@@ -1,0 +1,1 @@
+google.visualization.Query.setResponse({version:'0.5',reqId:'4',status:'ok',table:{p:{totalrows:5},cols:[{id:'col3',label:'buscompany',type:'string'},{id:'#agg#COUNT',label:'count()',type:'number'}],rows:[{c:[{v:'Dentro CETRAM'},{v:982.0}]},{c:[{v:'Fuera CETRAM'},{v:563.0}]},{c:[{v:'Compañía C'},{v:169.0}]},{c:[{v:''},{v:144.0}]},{c:[{v:'Unknown'},{v:95.0}]}]}})

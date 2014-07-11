@@ -1,0 +1,1 @@
+google.visualization.Query.setResponse({version:'0.5',reqId:'15',status:'error',errors:[{reason:'internal_error', message:'Could not parse query'}]})

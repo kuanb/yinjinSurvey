@@ -1,0 +1,1 @@
+google.visualization.Query.setResponse({version:'0.5',reqId:'19',status:'ok',table:{p:{totalrows:2},cols:[{id:'col27',label:'mostsafe',type:'string'},{id:'#agg#COUNT',label:'count()',type:'number'}],rows:[{c:[{v:''},{v:1515.0}]},{c:[{v:'Metro'},{v:10.0}]}]}})
