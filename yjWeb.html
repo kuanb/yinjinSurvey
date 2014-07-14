@@ -553,14 +553,14 @@
           google.visualization.drawChart({
             "containerId": "chart2",
             "dataSourceUrl": 'https://www.google.com/fusiontables/gvizdata?tq=',
-            "query":"SELECT Username, count(SurveyID) FROM " + fusionTableID + " GROUP BY Username ORDER BY count(SurveyID) DESC",
+            "query":"SELECT eq7_establishmentIndustry, AVERAGE(q3_storeroomReplenishRate) FROM " + fusionTableID + " GROUP BY eq7_establishmentIndustry",
             "refreshInterval": 5,
             "chartType": "BarChart",
             "color": "green", //#99E699,
             "options": {
               "title":"",
-              "vAxis": {"title": "Usuarios"},
-              "hAxis": {"title": "Número de encuestas"},
+              "vAxis": {"title": "Industry Type"},
+              "hAxis": {"title": "Average Replenish Rate"},
               "showAxisLines": 'false',
               "legend": 'none',
               "width" : 340,
@@ -705,7 +705,7 @@
           
           <div class="panel panel-success">
             <div class="panel-heading">
-              <h3 class="panel-title">Encuestas Totales por Usuario</h3>
+              <h3 class="panel-title">Replenish Rates by Industry</h3>
             </div>
             <div class="panel-body">
               <div id="chart2"

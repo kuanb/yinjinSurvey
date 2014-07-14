@@ -1,0 +1,767 @@
+{"Survey": {
+    "Chapters": [
+        {"Chapter": "I. Initialization",
+            "Questions": [
+                {"id": "q0a_shopID",
+                    "Question": "I1. Enter Shop ID",
+                    "Kind": "ON"
+                },
+                {"id": "q0b_surveyConsent",
+                    "Question": "I2. Does the respondent agree to take the survey?",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Yes"},
+                        {"Answer":"No"}
+                    ]
+                }
+            ]
+        },
+        {"Chapter": "Main. Establishment",
+            "Questions": [
+                {"id": "q1_workerCount",
+                    "Question": "Main1. What is the total number of workers in the establishment, including owners, full-time, part-time, unpaid workers? 请问这间店包括老板在内中共有多人在这里工作",
+                    "Kind": "ON"
+                },
+                {"id": "q2_storeroomSize",
+                    "Question": "Main2. How big is your storeroom? (Show them options.) 你的店的储藏室(storeroom)有多大?",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"There is no storage space."},
+                        {"Answer":"Less than 10 m2"},
+                        {"Answer":"10 m2 - 25 m2"},
+                        {"Answer":"25 m2 - 50 m2"},
+                        {"Answer":"50 m2 - 100 m2"},
+                        {"Answer":"100 m2 - 200 m2"},
+                        {"Answer":"200 m2 - 500 m2"},
+                        {"Answer":"More than 500 m2"}
+                    ]
+                },
+                {"id": "q3_storeroomReplenishRate",
+                    "Question": "Main3. How many deliveries did you receive per day (multiply the answer by 6)? or per week? 请问在上个星期，你的店进了几次货?",
+                    "Kind": "ON",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Do not know"}
+                    ]
+                },
+                {"id": "q4_deliveryCount",
+                    "Question": "Main4. How many suppliers do you have? Including your own warehouse. 你们从几间不同的公司补货？如果你的公司总部有送货给你， 也算在内。",
+                    "Kind": "MC",
+                    "Other": true,
+                    "Answers": [
+                        {"Answer":"1 (Sidebar, Mod1)"}
+                    ]
+                },
+                {"id": "q5_timeCheck",
+                    "Question": "*verdict*. Is the time even or odd; or is this a pharmacy?",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Even (Sidebar, Mod2)"},
+                        {"Answer":"Odd (Sidebar, Mod1)"},
+                        {"Answer":"Pharmacy (Sidebar, Mod1)"}
+                    ]
+                }
+            ]
+        },
+        {"Chapter": "Mod1. Recent Replenish",
+            "Questions": [
+                {"id": "q6_deliverOrPickup",
+                    "Question": "*verdict* In the most recent time your store replenished goods, was it delivered, or did you or your colleague pick it up? 请问你最近一次补货是你们自己去拿的，还是别人送来的？",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"It was delivered from the source to us (includes their own company’s distribution center). 是别人送来的."},
+                        {"Answer":"We hired a courier to deliver the product to us. (Sidebar, PICK)"},
+                        {"Answer":"We picked it up from the source. 我们去拿货送回店里 (Sidebar, PICK)"},
+                        {"Answer":"Others. 其他"},
+                        {"Answer":"Do not know. 不知道"}
+                    ]
+                }
+            ]
+        },
+        {"Chapter": "Del. Recent Delivery",
+            "Questions": [
+                {"id": "q7_DELmanufactOrExclDist",
+                    "Question": "Del1. In the most recent goods delivery, which of the following best describes the supplier? 以下的哪一个选择最适合形容这间公司?",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"From the manufacturer or exclusive distributor. 工厂或者专属供应商 (专卖一种品牌的产品)"},
+                        {"Answer":"From our corporate warehouse/ office. 我们公司自己的货仓"},
+                        {"Answer":"From a wholesaler (sell mix of different brands and products to meet niche needs of the store). 批发商 (批发多种不同品牌与货物的公司)"},
+                        {"Answer":"From another store. 另一间店"},
+                        {"Answer":"Others. 其他"},
+                        {"Answer":"Do not know. 不知道"}
+                    ]
+                },
+                {"id": "q8_DELsupplierReplenishRate",
+                    "Question": "Del2. How frequently does this “supplier” deliver goods to this store? Once a day or once a week? 你多常向这间公司拿货? 比如说一天一次，还是一个星期一次？",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Multiple times a day. 一天几次"},
+                        {"Answer":"Once a day. 一天一次"},
+                        {"Answer":"Multiple days a week. 一个星期几次"},
+                        {"Answer":"Once a week. 一个星期一次"},
+                        {"Answer":"Once every two weeks. 每两个星期一次"},
+                        {"Answer":"Once a month. 一个月一次"},
+                        {"Answer":"Or less. 更少"}
+                    ]
+                },
+                {"id": "q9_DELlastReplenish",
+                    "Question": "Del3. In the last delivery, what was delivered? 最近补货时，补了什么货？ Check all that apply.",
+                    "Kind": "CB",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Cooked, Prepared food"},
+                        {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
+                        {"Answer":"Fresh food (e.g. Vegetable, meat)"},
+                        {"Answer":"Dry/ Preserved food (e.g. Soda, canned food, snacks, sauce)"},
+                        {"Answer":"Medicinal and pharmaceutical products"},
+                        {"Answer":"Cosmetics"},
+                        {"Answer":"Other household cleaning products"},
+                        {"Answer":"Clothes, shoes, bags"},
+                        {"Answer":"Personal accessories/ effects (Watch, jewelries)"},
+                        {"Answer":"Packaging materials, e.g. plastic boxes and bags"}
+                    ]
+                },
+                {"id": "q10a_DELlastReplenishSize",
+                    "Question": "Del4. How big was your last delivery? Can it be stacked here? 最近补的那批货有多大份，会站用多少位？包括包装，这个地方够放吗？",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"25x25x25cm"},
+                        {"Answer":"50x50x50cm"},
+                        {"Answer":"100x100x100m"},
+                        {"Answer":"200x100x100m"},
+                        {"Answer":"One to two 200x100x100m boxes"},
+                        {"Answer":"More than two 200x100x100m box"}
+                    ]
+                },
+                {"id": "q11_DELtimeOfArrival",
+                    "Question": "Del5. What time did the last delivery arrive?",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Before 7:00 AM"},
+                        {"Answer":"7:00AM to 9:00 AM"},
+                        {"Answer":"9:00AM to 11:00 AM"},
+                        {"Answer":"11:00PM to 1:00 PM"},
+                        {"Answer":"1:00PM to 3:00 PM"},
+                        {"Answer":"3:00PM to 5:00 PM"},
+                        {"Answer":"5:00PM to 7:00 PM"},
+                        {"Answer":"After 7:00PM"},
+                        {"Answer":"Do not remember. 不知道，不记得"}
+                    ]
+                },
+                {"id": "q12_DELgoodsArrivalTime1",
+                    "Question": "Del6. Who decides the delivery time? 是谁决定送货的时间?",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"The other party. 出货的人决定。"},
+                        {"Answer":"We negotiate the delivery time together. 我们有商量最适当的送货时间。"},
+                        {"Answer":"The store, the goods are delivered at a time we specified. 我们有指定送货时间。"},
+                        {"Answer":"Others. 其他。"},
+                        {"Answer":"Do not know. 不知道。"}
+                    ]
+                },
+                {"id": "q13_DELerpPrice",
+                    "Question": "Del7.  ****Sidebar SELF****   Please ask the following question only if this store is in the ERP affected area. Did ERP pricing affect the time they make the delivery? 你认为送货时间是否受到ERP的影响？ ",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Not in the ERP affected zone. 不在ERP区内"},
+                        {"Answer":"Yes. 是"},
+                        {"Answer":"No. 否"},
+                        {"Answer":"Do not know. 不知道"}
+                    ]
+                }
+            ]
+        },
+        {"Chapter": "PICK. Recent Pick Up",
+            "Questions": [
+                {"id": "q14_PUPmanufactOrExclDist",
+                    "Question": "PICK1. In the most recent time you pick up goods, which of the following best describes the supplier? 以下的哪一个选择最适合形容这间公司?",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"From the manufacturer. 工厂"},
+                        {"Answer":"From the exclusive distributor. 专属供应商 (专卖一种品牌的产品)"},
+                        {"Answer":"From our corporate warehouse/ office. 我们公司自己的货仓"},
+                        {"Answer":"From a wholesaler (sell mix of different brands and products to meet niche needs of the store). 批发商 (批发多种不同品牌与货物的公司)"},
+                        {"Answer":"From another store. 另一间店"},
+                        {"Answer":"Others. 其他"},
+                        {"Answer":"Do not know. 不知道"}
+                    ]
+                },
+                {"id": "q15_PUPsupplierReplenishRate",
+                    "Question": "PICK2. How frequently do you pick up goods from this store? Once a day or once a week? 你多常向这间公司拿货? 比如说一天一次，还是一个星期一次？",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Multiple times a day. 一天几次"},
+                        {"Answer":"Once a day. 一天一次"},
+                        {"Answer":"Multiple days a week. 一个星期几次"},
+                        {"Answer":"Once a week. 一个星期一次"},
+                        {"Answer":"Once every two weeks. 每两个星期一次"},
+                        {"Answer":"Once a month. 一个月一次"},
+                        {"Answer":"Or less. 更少"}
+                    ]
+                },
+                {"id": "q16_PUPlastReplenish",
+                    "Question": "PICK3. In the last pick up, which of the following goods were collected? 最近补货时，补了什么货？ Check all that apply.",
+                    "Kind": "CB",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Cooked, Prepared food"},
+                        {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
+                        {"Answer":"Fresh food (e.g. Vegetable, meat)"},
+                        {"Answer":"Dry/ Preserved food (e.g. Soda, canned food, snacks, sauce)"},
+                        {"Answer":"Medicinal and pharmaceutical products"},
+                        {"Answer":"Cosmetics"},
+                        {"Answer":"Other household cleaning products"},
+                        {"Answer":"Clothes, shoes, bags"},
+                        {"Answer":"Personal accessories/ effects (Watch, jewelries)"},
+                        {"Answer":"Packaging materials, e.g. plastic boxes and bags"}
+                    ]
+                },
+                {"id": "q17_PUPlastReplenishSize",
+                    "Question": "PICK4. How big were the goods altogether? Can it be stacked here? 最近补的那批货有多大份，会站用多少位？包括包装，这个地方够放吗？",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"25x25x25cm"},
+                        {"Answer":"50x50x50cm"},
+                        {"Answer":"100x100x100m"},
+                        {"Answer":"200x100x100m"},
+                        {"Answer":"One to two 200x100x100m boxes"},
+                        {"Answer":"More than two 200x100x100m box"}
+                    ]
+                },
+                {"id": "q18_PUPvehicleType",
+                    "Question": "PICK5. What vehicle did you use?",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Light Goods Truck (<18ft long). 小货车"},
+                        {"Answer":"Pick up"},
+                        {"Answer":"Van"},
+                        {"Answer":"Car. 车"},
+                        {"Answer":"Motorcycle"},
+                        {"Answer":"Bicycle. 脚车"},
+                        {"Answer":"Did not use vehicle, walked. 走"},
+                        {"Answer":"After 7:00PM"},
+                        {"Answer":"Heavy Goods Truck (>18ft long)"}
+                    ]
+                },
+                {"id": "q19_PUPerpPrice",
+                    "Question": "PICK6.  ****Sidebar SELF***** Please ask the following question only if this store is in the ERP affected area. Did ERP pricing affect the time they make the delivery? 你认为送货时间是否受到ERP的影响？ ",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Not in the ERP affected zone. 不在ERP区内"},
+                        {"Answer":"Yes. 是"},
+                        {"Answer":"No. 否"},
+                        {"Answer":"Do not know. 不知道"}
+                    ]
+                }
+            ]
+        },
+        {"Chapter": "Mod2. Multiple Suppliers",
+            "Questions": [
+                {"id": "q20_1a_companyDelivery1",
+                    "Question": "SUP1A. What products does your main supplier supply? 你从最常点货的公司为你补什么货？如果你的公司总部有送货给你，也算在内。",
+                    "Kind": "CB",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Cooked, Prepared food"},
+                        {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
+                        {"Answer":"Fresh food (e.g. Vegetable, meat)"},
+                        {"Answer":"Dry/ Preserved food (e.g. Soda, canned food, snacks, sauce)"},
+                        {"Answer":"Medicinal and pharmaceutical products"},
+                        {"Answer":"Cosmetics"},
+                        {"Answer":"Other household cleaning products"},
+                        {"Answer":"Clothes, shoes, bags"},
+                        {"Answer":"Personal accessories/ effects (Watch, jewelries)"},
+                        {"Answer":"Packaging materials, e.g. plastic boxes and bags"}
+                    ]
+                },
+                {"id": "q20_1b_companyDelivery1",
+                    "Question": "SUP1B. How frequently does this supplier deliver goods to this store? Once a day or once a week? 你多常补这个货?",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Multiple times a day. 一天几次"},
+                        {"Answer":"Once a day. 一天一次"},
+                        {"Answer":"Multiple days a week. 一个星期几次"},
+                        {"Answer":"Once a week. 一个星期一次"},
+                        {"Answer":"Once every two weeks. 每两个星期一次"},
+                        {"Answer":"Once a month. 一个月一次"},
+                        {"Answer":"Or less. 更少"}
+                    ]
+                },
+                {"id": "q20_2a_companyDelivery1",
+                    "Question": "SUP2A. What products does the less frequent supplier supply? 你从这个公司补什么货？如果你的公司总部有送货给你，也算在内",
+                    "Kind": "CB",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Cooked, Prepared food"},
+                        {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
+                        {"Answer":"Fresh food (e.g. Vegetable, meat)"},
+                        {"Answer":"Dry/ Preserved food (e.g. Soda, canned food, snacks, sauce)"},
+                        {"Answer":"Medicinal and pharmaceutical products"},
+                        {"Answer":"Cosmetics"},
+                        {"Answer":"Other household cleaning products"},
+                        {"Answer":"Clothes, shoes, bags"},
+                        {"Answer":"Personal accessories/ effects (Watch, jewelries)"},
+                        {"Answer":"Packaging materials, e.g. plastic boxes and bags"}
+                    ]
+                },
+                {"id": "q20_2b_companyDelivery1",
+                    "Question": "SUP2B. How frequently does this supplier deliver goods to this store? Once a day or once a week? 你多常补这个货?",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Multiple times a day. 一天几次"},
+                        {"Answer":"Once a day. 一天一次"},
+                        {"Answer":"Multiple days a week. 一个星期几次"},
+                        {"Answer":"Once a week. 一个星期一次"},
+                        {"Answer":"Once every two weeks. 每两个星期一次"},
+                        {"Answer":"Once a month. 一个月一次"},
+                        {"Answer":"Or less. 更少"}
+                    ]
+                },
+                {"id": "q20_3a_companyDelivery1",
+                    "Question": "SUP3A. What products does the less frequent supplier supply? 你从这个公司补什么货？如果你的公司总部有送货给你，也算在内",
+                    "Kind": "CB",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Cooked, Prepared food"},
+                        {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
+                        {"Answer":"Fresh food (e.g. Vegetable, meat)"},
+                        {"Answer":"Dry/ Preserved food (e.g. Soda, canned food, snacks, sauce)"},
+                        {"Answer":"Medicinal and pharmaceutical products"},
+                        {"Answer":"Cosmetics"},
+                        {"Answer":"Other household cleaning products"},
+                        {"Answer":"Clothes, shoes, bags"},
+                        {"Answer":"Personal accessories/ effects (Watch, jewelries)"},
+                        {"Answer":"Packaging materials, e.g. plastic boxes and bags"}
+                    ]
+                },
+                {"id": "q20_3b_companyDelivery1",
+                    "Question": "SUP3B. How frequently does this supplier deliver goods to this store? Once a day or once a week? 你多常补这个货?",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Multiple times a day. 一天几次"},
+                        {"Answer":"Once a day. 一天一次"},
+                        {"Answer":"Multiple days a week. 一个星期几次"},
+                        {"Answer":"Once a week. 一个星期一次"},
+                        {"Answer":"Once every two weeks. 每两个星期一次"},
+                        {"Answer":"Once a month. 一个月一次"},
+                        {"Answer":"Or less. 更少"}
+                    ]
+                },
+                {"id": "q20_4a_companyDelivery1",
+                    "Question": "SUP4A. What products does the less frequent supplier supply? 你从这个公司补什么货？如果你的公司总部有送货给你，也算在内",
+                    "Kind": "CB",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Cooked, Prepared food"},
+                        {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
+                        {"Answer":"Fresh food (e.g. Vegetable, meat)"},
+                        {"Answer":"Dry/ Preserved food (e.g. Soda, canned food, snacks, sauce)"},
+                        {"Answer":"Medicinal and pharmaceutical products"},
+                        {"Answer":"Cosmetics"},
+                        {"Answer":"Other household cleaning products"},
+                        {"Answer":"Clothes, shoes, bags"},
+                        {"Answer":"Personal accessories/ effects (Watch, jewelries)"},
+                        {"Answer":"Packaging materials, e.g. plastic boxes and bags"}
+                    ]
+                },
+                {"id": "q20_4b_companyDelivery1",
+                    "Question": "SUP4B. How frequently does this supplier deliver goods to this store? Once a day or once a week? 你多常补这个货?",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Multiple times a day. 一天几次"},
+                        {"Answer":"Once a day. 一天一次"},
+                        {"Answer":"Multiple days a week. 一个星期几次"},
+                        {"Answer":"Once a week. 一个星期一次"},
+                        {"Answer":"Once every two weeks. 每两个星期一次"},
+                        {"Answer":"Once a month. 一个月一次"},
+                        {"Answer":"Or less. 更少"}
+                    ]
+                },
+                {"id": "q20_5a_companyDelivery1",
+                    "Question": "SUP5A. What products does the less frequent supplier supply? 你从这个公司补什么货？如果你的公司总部有送货给你，也算在内",
+                    "Kind": "CB",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Cooked, Prepared food"},
+                        {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
+                        {"Answer":"Fresh food (e.g. Vegetable, meat)"},
+                        {"Answer":"Dry/ Preserved food (e.g. Soda, canned food, snacks, sauce)"},
+                        {"Answer":"Medicinal and pharmaceutical products"},
+                        {"Answer":"Cosmetics"},
+                        {"Answer":"Other household cleaning products"},
+                        {"Answer":"Clothes, shoes, bags"},
+                        {"Answer":"Personal accessories/ effects (Watch, jewelries)"},
+                        {"Answer":"Packaging materials, e.g. plastic boxes and bags"}
+                    ]
+                },
+                {"id": "q20_5b_companyDelivery1",
+                    "Question": "SUP5B. How frequently does this supplier deliver goods to this store? Once a day or once a week? 你多常补这个货?",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Multiple times a day. 一天几次"},
+                        {"Answer":"Once a day. 一天一次"},
+                        {"Answer":"Multiple days a week. 一个星期几次"},
+                        {"Answer":"Once a week. 一个星期一次"},
+                        {"Answer":"Once every two weeks. 每两个星期一次"},
+                        {"Answer":"Once a month. 一个月一次"},
+                        {"Answer":"Or less. 更少"}
+                    ]
+                },
+                {"id": "q20_6a_companyDelivery1",
+                    "Question": "SUP6A. What products does the less frequent supplier supply? 你从这个公司补什么货？如果你的公司总部有送货给你，也算在内",
+                    "Kind": "CB",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Cooked, Prepared food"},
+                        {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
+                        {"Answer":"Fresh food (e.g. Vegetable, meat)"},
+                        {"Answer":"Dry/ Preserved food (e.g. Soda, canned food, snacks, sauce)"},
+                        {"Answer":"Medicinal and pharmaceutical products"},
+                        {"Answer":"Cosmetics"},
+                        {"Answer":"Other household cleaning products"},
+                        {"Answer":"Clothes, shoes, bags"},
+                        {"Answer":"Personal accessories/ effects (Watch, jewelries)"},
+                        {"Answer":"Packaging materials, e.g. plastic boxes and bags"}
+                    ]
+                },
+                {"id": "q20_6b_companyDelivery1",
+                    "Question": "SUP6B. How frequently does this supplier deliver goods to this store? Once a day or once a week? 你多常补这个货?",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Multiple times a day. 一天几次"},
+                        {"Answer":"Once a day. 一天一次"},
+                        {"Answer":"Multiple days a week. 一个星期几次"},
+                        {"Answer":"Once a week. 一个星期一次"},
+                        {"Answer":"Once every two weeks. 每两个星期一次"},
+                        {"Answer":"Once a month. 一个月一次"},
+                        {"Answer":"Or less. 更少"}
+                    ]
+                },
+                {"id": "q20_7a_companyDelivery1",
+                    "Question": "SUP7A. What products does the less frequent supplier supply? 你从这个公司补什么货？如果你的公司总部有送货给你，也算在内",
+                    "Kind": "CB",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Cooked, Prepared food"},
+                        {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
+                        {"Answer":"Fresh food (e.g. Vegetable, meat)"},
+                        {"Answer":"Dry/ Preserved food (e.g. Soda, canned food, snacks, sauce)"},
+                        {"Answer":"Medicinal and pharmaceutical products"},
+                        {"Answer":"Cosmetics"},
+                        {"Answer":"Other household cleaning products"},
+                        {"Answer":"Clothes, shoes, bags"},
+                        {"Answer":"Personal accessories/ effects (Watch, jewelries)"},
+                        {"Answer":"Packaging materials, e.g. plastic boxes and bags"}
+                    ]
+                },
+                {"id": "q20_7b_companyDelivery1",
+                    "Question": "SUP7B. How frequently does this supplier deliver goods to this store? Once a day or once a week? 你多常补这个货?",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Multiple times a day. 一天几次"},
+                        {"Answer":"Once a day. 一天一次"},
+                        {"Answer":"Multiple days a week. 一个星期几次"},
+                        {"Answer":"Once a week. 一个星期一次"},
+                        {"Answer":"Once every two weeks. 每两个星期一次"},
+                        {"Answer":"Once a month. 一个月一次"},
+                        {"Answer":"Or less. 更少"}
+                    ]
+                },
+                {"id": "q20_8a_companyDelivery1",
+                    "Question": "SUP8A. What products does the less frequent supplier supply? 你从这个公司补什么货？如果你的公司总部有送货给你，也算在内",
+                    "Kind": "CB",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Cooked, Prepared food"},
+                        {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
+                        {"Answer":"Fresh food (e.g. Vegetable, meat)"},
+                        {"Answer":"Dry/ Preserved food (e.g. Soda, canned food, snacks, sauce)"},
+                        {"Answer":"Medicinal and pharmaceutical products"},
+                        {"Answer":"Cosmetics"},
+                        {"Answer":"Other household cleaning products"},
+                        {"Answer":"Clothes, shoes, bags"},
+                        {"Answer":"Personal accessories/ effects (Watch, jewelries)"},
+                        {"Answer":"Packaging materials, e.g. plastic boxes and bags"}
+                    ]
+                },
+                {"id": "q20_8b_companyDelivery1",
+                    "Question": "SUP8B. How frequently does this supplier deliver goods to this store? Once a day or once a week? 你多常补这个货?",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Multiple times a day. 一天几次"},
+                        {"Answer":"Once a day. 一天一次"},
+                        {"Answer":"Multiple days a week. 一个星期几次"},
+                        {"Answer":"Once a week. 一个星期一次"},
+                        {"Answer":"Once every two weeks. 每两个星期一次"},
+                        {"Answer":"Once a month. 一个月一次"},
+                        {"Answer":"Or less. 更少"}
+                    ]
+                },
+                {"id": "q20_9a_companyDelivery1",
+                    "Question": "SUP9A. What products does the less frequent supplier supply? 你从这个公司补什么货？如果你的公司总部有送货给你，也算在内",
+                    "Kind": "CB",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Cooked, Prepared food"},
+                        {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
+                        {"Answer":"Fresh food (e.g. Vegetable, meat)"},
+                        {"Answer":"Dry/ Preserved food (e.g. Soda, canned food, snacks, sauce)"},
+                        {"Answer":"Medicinal and pharmaceutical products"},
+                        {"Answer":"Cosmetics"},
+                        {"Answer":"Other household cleaning products"},
+                        {"Answer":"Clothes, shoes, bags"},
+                        {"Answer":"Personal accessories/ effects (Watch, jewelries)"},
+                        {"Answer":"Packaging materials, e.g. plastic boxes and bags"}
+                    ]
+                },
+                {"id": "q20_9b_companyDelivery1",
+                    "Question": "SUP9B. How frequently does this supplier deliver goods to this store? Once a day or once a week? 你多常补这个货?",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Multiple times a day. 一天几次"},
+                        {"Answer":"Once a day. 一天一次"},
+                        {"Answer":"Multiple days a week. 一个星期几次"},
+                        {"Answer":"Once a week. 一个星期一次"},
+                        {"Answer":"Once every two weeks. 每两个星期一次"},
+                        {"Answer":"Once a month. 一个月一次"},
+                        {"Answer":"Or less. 更少"}
+                    ]
+                },
+                {"id": "q20_10a_companyDelivery1",
+                    "Question": "SUP10A. What products does the less frequent supplier supply? 你从这个公司补什么货？如果你的公司总部有送货给你，也算在内",
+                    "Kind": "CB",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Cooked, Prepared food"},
+                        {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
+                        {"Answer":"Fresh food (e.g. Vegetable, meat)"},
+                        {"Answer":"Dry/ Preserved food (e.g. Soda, canned food, snacks, sauce)"},
+                        {"Answer":"Medicinal and pharmaceutical products"},
+                        {"Answer":"Cosmetics"},
+                        {"Answer":"Other household cleaning products"},
+                        {"Answer":"Clothes, shoes, bags"},
+                        {"Answer":"Personal accessories/ effects (Watch, jewelries)"},
+                        {"Answer":"Packaging materials, e.g. plastic boxes and bags"}
+                    ]
+                },
+                {"id": "q20_10b_companyDelivery1",
+                    "Question": "SUP10B. How frequently does this supplier deliver goods to this store? Once a day or once a week? 你多常补这个货?",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Multiple times a day. 一天几次"},
+                        {"Answer":"Once a day. 一天一次"},
+                        {"Answer":"Multiple days a week. 一个星期几次"},
+                        {"Answer":"Once a week. 一个星期一次"},
+                        {"Answer":"Once every two weeks. 每两个星期一次"},
+                        {"Answer":"Once a month. 一个月一次"},
+                        {"Answer":"Or less. 更少"}
+                    ]
+                }
+            ]
+        },
+        {"Chapter": "SELF. Post Survey Form",
+            "Questions": [
+                {"id": "eq1_establishmentName",
+                    "Question": "SELF1. Enter establishment name",
+                    "Kind": "OT"
+                },
+                {"id": "eq2_postCode",
+                    "Question": "SELF2. Enter postal code",
+                    "Kind": "ON"
+                },
+                {"id": "eq3_storeLocation",
+                    "Question": "SELF3. Where is the store located?",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Indoor/underground mall"},
+                        {"Answer":"Street/street houses"},
+                        {"Answer":"Others"}
+                    ]
+                },
+                {"id": "eq4_visibleArea",
+                    "Question": "SELF4. What is the visible shop area?",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Less than 10 m2"},
+                        {"Answer":"10 m2 - 25 m2"},
+                        {"Answer":"25 m2 - 50 m2"},
+                        {"Answer":"50 m2 - 100 m2"},
+                        {"Answer":"100 m2 – 200 m2"},
+                        {"Answer":"200 m2 – 500 m2"},
+                        {"Answer":"More than 500 m2"}
+                    ]
+                },
+                {"id": "eq5_retailChain",
+                    "Question": "SELF5. Is this store outlet part of a retail chain?",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Yes"},
+                        {"Answer":"No"}
+                    ]
+                },
+                {"id": "eq6a_weekdayHoursOpen",
+                    "Question": "SELF6A. Weekday hours: Opening time hhmm (24 hour format)",
+                    "Kind": "ON"
+                },
+                {"id": "eq6b_weekdayHoursClose",
+                    "Question": "SELF6B. Weekday hours: Closing time hhmm (24 hour format)",
+                    "Kind": "ON"
+                },
+                {"id": "eq7_establishmentIndustry",
+                    "Question": "SELF7. Describe the establishment's industry",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"Pharmacies and drug stores. May sell other personal products (47722/3)"},
+                        {"Answer":"Shops that only sells cosmetics and toiletries (47721)"},
+                        {"Answer":"Cafes, restaurants, bars and bakeries baked on site (5611, 56121, 1071)"},
+                        {"Answer":"Food court and hawkers (5614, 56122)"},
+                        {"Answer":"Grocery store mainly selling fresh products (e.g. a mix of vegetables, meat, fish, others)  (472)"},
+                        {"Answer":"Grocery store mainly selling several types of dry goods (consumer packaged goods) (471)"},
+                        {"Answer":"Apparel stores, selling clothes, bags and shoes. May sell accessories (4771)"},
+                        {"Answer":"Personal accessories stores (4773)"}
+                    ]
+                },
+                {"id": "eq8a_relativeAmountSales",
+                    "Question": "SELF8A. Select the relative amount sold in shop: Prepared food products that are usually consumed immediately and are perishable. (561)",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"3 (Most)"},
+                        {"Answer":"2 (Some)"},
+                        {"Answer":"1 (Least)"},  
+                        {"Answer":"0 (None)"}
+                    ]
+                },
+                {"id": "eq8b_relativeAmountSales",
+                    "Question": "SELF8B. Select the relative amount sold in shop: Fresh or frozen products. E.g. fruit, vegetables, meat, fish, and milk. (4630, 4721)",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"3 (Most)"},
+                        {"Answer":"2 (Some)"},
+                        {"Answer":"1 (Least)"},  
+                        {"Answer":"0 (None)"}
+                    ]
+                },
+                {"id": "eq8c_relativeAmountSales",
+                    "Question": "SELF8C. Select the relative amount sold in shop: Food items that may expire but are not as perishable as fresh goods. E.g. Liquor, soda, chips, tobacco, and candies. (4630)",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"3 (Most)"},
+                        {"Answer":"2 (Some)"},
+                        {"Answer":"1 (Least)"},  
+                        {"Answer":"0 (None)"}
+                    ]
+                },
+                {"id": "eq8d_relativeAmountSales",
+                    "Question": "SELF8D. Select the relative amount sold in shop: Cosmetics/perfumes",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"3 (Most)"},
+                        {"Answer":"2 (Some)"},
+                        {"Answer":"1 (Least)"},  
+                        {"Answer":"0 (None)"}
+                    ]
+                },
+                {"id": "eq8e_relativeAmountSales",
+                    "Question": "SELF8E. Select the relative amount sold in shop: Toiletries (4642)",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"3 (Most)"},
+                        {"Answer":"2 (Some)"},
+                        {"Answer":"1 (Least)"},  
+                        {"Answer":"0 (None)"}
+                    ]
+                },
+                {"id": "eq8f_relativeAmountSales",
+                    "Question": "SELF8F. Select the relative amount sold in shop: Medicinal and pharmaceutical products. (4646)",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"3 (Most)"},
+                        {"Answer":"2 (Some)"},
+                        {"Answer":"1 (Least)"},  
+                        {"Answer":"0 (None)"}
+                    ]
+                },
+                {"id": "eq8g_relativeAmountSales",
+                    "Question": "SELF8G. Select the relative amount sold in shop: Clothing, shoes, bags and luggage. (4641)",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"3 (Most)"},
+                        {"Answer":"2 (Some)"},
+                        {"Answer":"1 (Least)"},  
+                        {"Answer":"0 (None)"}
+                    ]
+                },
+                {"id": "eq8h_relativeAmountSales",
+                    "Question": "SELF8H. Select the relative amount sold in shop: Watches, jewellery, silver products, fashion jewellery. (4642)",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"3 (Most)"},
+                        {"Answer":"2 (Some)"},
+                        {"Answer":"1 (Least)"},  
+                        {"Answer":"0 (None)"}
+                    ]
+                },
+                {"id": "eq8i_relativeAmountSales",
+                    "Question": "SELF8I. Select the relative amount sold in shop: Others",
+                    "Kind": "MC",
+                    "Other": false,
+                    "Answers": [
+                        {"Answer":"3 (Most)"},
+                        {"Answer":"2 (Some)"},
+                        {"Answer":"1 (Least)"},  
+                        {"Answer":"0 (None)"}
+                    ]
+                }
+            ]
+        }
+    ],
+    "TableID": "1TenEyJyMAemfv9TIBjMAjiTI9mGilw7uwbntavgw"
+},
+"Tracker": {
+    "Questions": [
+        {"id": "q1",
+            "Question": "Welcome, please enter your name.",
+            "Kind": "OT"
+        }
+    ],
+    "TableID": "1rvLXn_uWbGtOkyBcYDuyoxRDgoqQPWvRPcklRqBU"
+    }
+}
