@@ -641,7 +641,44 @@
               "width" : 340,
               }
             });
-        }
+
+
+          // Chart 7
+          google.visualization.drawChart({
+            "containerId": "chart7",
+            "dataSourceUrl": 'https://www.google.com/fusiontables/gvizdata?tq=',
+            "query":"SELECT eq7_establishmentIndustry, count(SurveyID) FROM " + fusionTableID + " GROUP BY eq7_establishmentIndustry",
+            "refreshInterval": 5,
+            "chartType": "BarChart",
+            "color": "green", //#99E699,
+            "options": {
+              "title":"",
+              "vAxis": {"title": "Shop Type"},
+              "hAxis": {"title": "Survey Count"},
+              "showAxisLines": 'false',
+              "legend": 'none',
+              "width" : 340,
+              }
+            });
+
+          // Chart 8
+          google.visualization.drawChart({
+            "containerId": "chart8",
+            "dataSourceUrl": 'https://www.google.com/fusiontables/gvizdata?tq=',
+            "query":"SELECT q0b_surveyConsent, count(SurveyID) FROM " + fusionTableID + " GROUP BY q0b_surveyConsent",
+            "refreshInterval": 5,
+            "chartType": "PieChart",
+            "color": "green", //#99E699,
+            "options": {
+              "title":"",
+              "vAxis": {"title": "Example Y-Axis"},
+              "hAxis": {"title": "Example X-Axis"},
+              "width" : 340,
+              "legend": {"height": 600},
+              }
+            });
+}
+
         // google.setOnLoadCallback(drawVisualization);
         </script>
 
@@ -788,6 +825,42 @@
               </div>
             </div>
           </div>
+        </div><!-- /.col-sm-4 -->
+
+        <div class="col-sm-4">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">Survey Counts by Shop Type</h3>
+            </div>
+            <div class="panel-body">
+              <div id="chart7"
+                style=  "width: 250px; 
+                        height: 250px;
+                        float: left;
+                        z-index: 2;
+                        position: relative;">
+              </div>
+            </div>
+          </div>
+          
+        </div><!-- /.col-sm-4 -->
+
+        <div class="col-sm-4">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">Survey Counts by Shop Type</h3>
+            </div>
+            <div class="panel-body">
+              <div id="chart8"
+                style=  "width: 250px; 
+                        height: 250px;
+                        float: left;
+                        z-index: 2;
+                        position: relative;">
+              </div>
+            </div>
+          </div>
+          
         </div><!-- /.col-sm-4 -->
 
       </div><!-- /.row -->
