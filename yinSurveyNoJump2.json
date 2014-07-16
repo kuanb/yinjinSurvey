@@ -114,7 +114,7 @@
                 {"id": "q9_DELlastReplenish",
                     "Question": "Del3. In the last delivery, what was delivered? 最近补货时，补了什么货？ Check all that apply.",
                     "Kind": "CB",
-                    "Other": false,
+                    "Other": true,
                     "Answers": [
                         {"Answer":"Cooked, Prepared food"},
                         {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
@@ -215,7 +215,7 @@
                 {"id": "q16_PUPlastReplenish",
                     "Question": "PICK3. In the last pick up, which of the following goods were collected? 最近补货时，补了什么货？ Check all that apply.",
                     "Kind": "CB",
-                    "Other": false,
+                    "Other": true,
                     "Answers": [
                         {"Answer":"Cooked, Prepared food"},
                         {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
@@ -276,7 +276,7 @@
                 {"id": "q20_1a_companyDelivery1",
                     "Question": "SUP1A. What products does your main supplier supply? 你从最常点货的公司为你补什么货？如果你的公司总部有送货给你，也算在内。",
                     "Kind": "CB",
-                    "Other": false,
+                    "Other": true,
                     "Answers": [
                         {"Answer":"Cooked, Prepared food"},
                         {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
@@ -307,7 +307,7 @@
                 {"id": "q20_2a_companyDelivery1",
                     "Question": "SUP2A. What products does the less frequent supplier supply? 你从这个公司补什么货？如果你的公司总部有送货给你，也算在内",
                     "Kind": "CB",
-                    "Other": false,
+                    "Other": true,
                     "Answers": [
                         {"Answer":"Cooked, Prepared food"},
                         {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
@@ -338,7 +338,7 @@
                 {"id": "q20_3a_companyDelivery1",
                     "Question": "SUP3A. What products does the less frequent supplier supply? 你从这个公司补什么货？如果你的公司总部有送货给你，也算在内",
                     "Kind": "CB",
-                    "Other": false,
+                    "Other": true,
                     "Answers": [
                         {"Answer":"Cooked, Prepared food"},
                         {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
@@ -369,7 +369,7 @@
                 {"id": "q20_4a_companyDelivery1",
                     "Question": "SUP4A. What products does the less frequent supplier supply? 你从这个公司补什么货？如果你的公司总部有送货给你，也算在内",
                     "Kind": "CB",
-                    "Other": false,
+                    "Other": true,
                     "Answers": [
                         {"Answer":"Cooked, Prepared food"},
                         {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
@@ -400,7 +400,7 @@
                 {"id": "q20_5a_companyDelivery1",
                     "Question": "SUP5A. What products does the less frequent supplier supply? 你从这个公司补什么货？如果你的公司总部有送货给你，也算在内",
                     "Kind": "CB",
-                    "Other": false,
+                    "Other": true,
                     "Answers": [
                         {"Answer":"Cooked, Prepared food"},
                         {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
@@ -431,7 +431,7 @@
                 {"id": "q20_6a_companyDelivery1",
                     "Question": "SUP6A. What products does the less frequent supplier supply? 你从这个公司补什么货？如果你的公司总部有送货给你，也算在内",
                     "Kind": "CB",
-                    "Other": false,
+                    "Other": true,
                     "Answers": [
                         {"Answer":"Cooked, Prepared food"},
                         {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
@@ -462,7 +462,7 @@
                 {"id": "q20_7a_companyDelivery1",
                     "Question": "SUP7A. What products does the less frequent supplier supply? 你从这个公司补什么货？如果你的公司总部有送货给你，也算在内",
                     "Kind": "CB",
-                    "Other": false,
+                    "Other": true,
                     "Answers": [
                         {"Answer":"Cooked, Prepared food"},
                         {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
@@ -493,7 +493,7 @@
                 {"id": "q20_8a_companyDelivery1",
                     "Question": "SUP8A. What products does the less frequent supplier supply? 你从这个公司补什么货？如果你的公司总部有送货给你，也算在内",
                     "Kind": "CB",
-                    "Other": false,
+                    "Other": true,
                     "Answers": [
                         {"Answer":"Cooked, Prepared food"},
                         {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
@@ -524,7 +524,7 @@
                 {"id": "q20_9a_companyDelivery1",
                     "Question": "SUP9A. What products does the less frequent supplier supply? 你从这个公司补什么货？如果你的公司总部有送货给你，也算在内",
                     "Kind": "CB",
-                    "Other": false,
+                    "Other": true,
                     "Answers": [
                         {"Answer":"Cooked, Prepared food"},
                         {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
@@ -555,7 +555,7 @@
                 {"id": "q20_10a_companyDelivery1",
                     "Question": "SUP10A. What products does the less frequent supplier supply? 你从这个公司补什么货？如果你的公司总部有送货给你，也算在内",
                     "Kind": "CB",
-                    "Other": false,
+                    "Other": true,
                     "Answers": [
                         {"Answer":"Cooked, Prepared food"},
                         {"Answer":"Frozen food (e.g. Frozen meat, cake)"},
